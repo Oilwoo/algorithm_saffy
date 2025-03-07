@@ -24,6 +24,7 @@ public class AdjListTest {
         }
     }
 
+
     static Node[] adjList;
     static int V;
 
