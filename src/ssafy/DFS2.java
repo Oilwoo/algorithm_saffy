@@ -4,7 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Graph3 {
+public class DFS2 {
 
     static class Node{
         int to, weight;
@@ -45,30 +45,19 @@ public class Graph3 {
             System.out.println(node);
         }
 
-        bfs(0);
+        dfs(0, new boolean[V]);
 
     }
 
-    private static void bfs(int start) {
-        Queue<Integer> queue = new ArrayDeque<>();
-        boolean[] visited = new boolean[V];
-
-        visited[start] = true;
-        queue.offer(start);
-
-        while(!queue.isEmpty()) {
-            int current = queue.poll(); // 탐색할 대상 꺼내기
-            // 탐색해서 해야할 일 처리
-            System.out.print((char) (current+65));
-            // 자신의 인접정점들을 다음 탐색이 가능하게 관리
-            for (Node temp = adjList[current]; temp != null; temp = temp.next) {
-                if(visited[temp.to]) continue; // 방문된 상태면 skip
-
-                visited[temp.to] = true; // 인접 정점 방문처리
-                queue.offer(temp.to); // 인접 정점 큐에 넣기
-            }
+    private static void dfs(int current, boolean[] visited) {
+        visited[current] = true;
+        System.out.print((char) (current+65));
+        for (Node temp = adjList[current]; temp != null; temp = temp.next) {
+            if (!visited[temp.to]) continue;
+            dfs(temp.to, visited);
         }
     }
+
 }
 
 /*
