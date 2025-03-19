@@ -35,9 +35,16 @@ public class BOJ2167 {
 
         // 합을 구할 부분의 개수 K
         int K = Integer.parseInt(br.readLine());
-        input = br.readLine().split(" ");
-        for (int i = 0; i < K; i++) {
+        for (int index = 0; index < K; index++) {
+            input = br.readLine().split(" ");
             //i, j, x, y
+            int i = Integer.parseInt(input[0]);
+            int j = Integer.parseInt(input[1]);
+            int x = Integer.parseInt(input[2]);
+            int y = Integer.parseInt(input[3]);
+
+            int result  = prefix_matrix[x][y] - prefix_matrix[i-1][y] - prefix_matrix[x][j-1] + prefix_matrix[i-1][j-1];
+            System.out.println(result);
         }
 
 
