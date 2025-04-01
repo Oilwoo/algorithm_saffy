@@ -2,7 +2,6 @@ package boj;
 
 import java.io.*;
 import java.util.ArrayDeque;
-import java.util.PriorityQueue;
 
 class Virus {
     int x,y;
