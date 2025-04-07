@@ -19,6 +19,7 @@ public class SWEA1249 {
         for (int t = 1; t <= T; t++) {
             N = Integer.parseInt(br.readLine());
             map = new int[N][N];
+            visited = new int[N][N];
             for (int i = 0; i < N; i++) {
                 String[] input = br.readLine().split("");
                 for (int j = 0; j < N; j++) {
@@ -26,12 +27,10 @@ public class SWEA1249 {
                     visited[i][j] = Integer.MAX_VALUE;
                 }
             }
-            // bfs + dp?
             bfs();
-
-            sb.append("#").append(t).append(" ").append(visited[N-1][N-1]);
-            System.out.println(sb);
+            sb.append("#").append(t).append(" ").append(visited[N-1][N-1]).append("\n");
         }
+        System.out.println(sb);
     }
 
     static int[] dx = {-1,1,0,0};
@@ -40,8 +39,8 @@ public class SWEA1249 {
 
     static void bfs() {
         Queue<int[]> q = new ArrayDeque<>();
-        q.offer(new int[] {0,0,});
-        visited[0][0] = map[0][0];
+        q.offer(new int[] {0,0});
+        visited[0][0] = 0;
 
         while(!q.isEmpty()) {
             int[] cur = q.poll();
@@ -52,7 +51,8 @@ public class SWEA1249 {
                 int nx = x + dx[d];
                 int ny = y + dy[d];
                 if(nx >= 0 && nx < N && ny >= 0 && ny < N) {
-                    if(visited[nx][ny] > visited[x][y]) {
+                    if(visited[nx][ny] > visited[x][y] + map[nx][ny]) {
+                        visited[nx][ny] = visited[x][y] + map[nx][ny];
                         q.offer(new int[] {nx,ny});
                     }
                 }
