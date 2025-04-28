@@ -34,8 +34,7 @@ public class SWEA2117 {
             }
 
             int ans = 0;
-            int Kmax = 2 * (N-1) + 1;
-            for (int k = 1; k <= Kmax; k++) {
+            for (int k = 1; k <= N+1; k++) {
                 int pay = (k * k + (k - 1) * (k - 1));
                 for (int i = 0; i < N; i++) {
                     for (int j = 0; j < N; j++) {
